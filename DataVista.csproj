@@ -5,11 +5,43 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(222)</PackageId>
+    <Title>DataVista</Title>
+    <Authors>agc-86</Authors>
+    <Description>DataVista is a .NET library for interacting with databases using ADO.NET and providing system management utilities for WPF applications.</Description>
+    <Copyright>https://github.com/ag-86/DataVista/blob/master/LICENSE.txt</Copyright>
+    <PackageProjectUrl>https://github.com/ag-86/DataVista/</PackageProjectUrl>
+    <PackageIcon>Knight.jpg</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/ag-86/DataVista/</RepositoryUrl>
+    <PackageTags>ADO,system,management,WPF,Data,Vista,DataVista</PackageTags>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <AnalysisLevel>none</AnalysisLevel>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Pictures\Wallpapers\Minimal\Knight.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
