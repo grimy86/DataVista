@@ -8,6 +8,9 @@ DataVista is a .NET library for interacting with databases using ADO.NET and pro
 - [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient/)
 - [System.Management](https://www.nuget.org/packages/System.Management/)
 
+## NuGet package
+[DataVista](https://www.nuget.org/packages/DataVista/1.0.0)
+
 ## Classes
   - DatabaseConnection
   - DatabaseOperation
