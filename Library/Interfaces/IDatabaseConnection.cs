@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace DataVista.Library.Interfaces
 {
-    interface IDatabaseConnection : IDisposable
+    public interface IDatabaseConnection : IDisposable
     {
         #region PROPERTIES
         /// <summary>

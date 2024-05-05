@@ -119,7 +119,7 @@ namespace DataVista.Library.Classes
         /// <param name="DataSource"></param>
         /// <param name="InitialCatalog"></param>
         /// <returns></returns>
-        public string CreateConnectionString(string DataSource, string InitialCatalog)
+        public static string CreateConnectionString(string DataSource, string InitialCatalog)
         {
             SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder();
             stringBuilder.IntegratedSecurity = true;

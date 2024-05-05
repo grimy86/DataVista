@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace DataVista.Library.Classes
 {
-    internal class DatabaseOperation
+    public class DatabaseOperation
     {
         #region FIELDS
         private readonly IDatabaseConnection _databaseConnection;
