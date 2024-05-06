@@ -8,27 +8,27 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DataVista.Library.Classes
+namespace DataVista.System
 {
-    public class FramerateManager
+    public class Framerate
     {
         #region FIELDS
-        private static int _frameCount;
+        private static int _buffer;
         private static Stopwatch _stopwatch;
-        private static double _frameRate;
+        private static double _count;
         #endregion
 
         #region PROPERTIES
-        public static double FrameRate
+        public static double Count
         {
-            get { return _frameRate; }
+            get { return _count; }
         }
         #endregion
 
         #region CONSTRUCTOR
-        static FramerateManager()
+        static Framerate()
         {
-            _frameCount = 0;
+            _buffer = 0;
             _stopwatch = Stopwatch.StartNew();
 
             // Subscribe to CompositionTarget.Rendering event to track frame rendering
@@ -40,7 +40,7 @@ namespace DataVista.Library.Classes
         private static void CompositionTarget_Rendering(object? sender, EventArgs e)
         {
             // Increment frame count for each frame rendering
-            _frameCount++;
+            _buffer++;
 
             // Calculate elapsed time
             TimeSpan elapsed = _stopwatch.Elapsed;
@@ -49,25 +49,25 @@ namespace DataVista.Library.Classes
             if (elapsed >= TimeSpan.FromSeconds(1))
             {
                 // Calculate FPS (frames per second)
-                _frameRate = _frameCount / elapsed.TotalSeconds;
+                _count = _buffer / elapsed.TotalSeconds;
 
                 // Reset frame count and stopwatch for the next calculation
-                _frameCount = 0;
+                _buffer = 0;
                 _stopwatch.Restart();
             }
         }
 
         public static void ShowFrameRate(UIElement uIElement)
         {
-            string FrameRate = $"[FPS: {_frameRate}]";
+            string FrameRate = $"[FPS: {_count}]";
 
             if (uIElement is TextBlock textBlock)
             {
-                textBlock.Text = $"[FPS: {_frameRate}]";
+                textBlock.Text = $"[FPS: {_count}]";
             }
             else if (uIElement is ContentControl contentControl)
             {
-                contentControl.Content = $"[FPS: {_frameRate}]";
+                contentControl.Content = $"[FPS: {_count}]";
             }
             else
             {

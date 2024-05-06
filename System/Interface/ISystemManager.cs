@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DataVista.Library.Interfaces
+namespace DataVista.System.Interface
 {
     internal interface ISystemManager
     {
@@ -32,8 +32,7 @@ namespace DataVista.Library.Interfaces
         #endregion
 
         #region METHODS
-        string GetMachineID();
+        string GetEnvironment();
         #endregion
-
     }
 }

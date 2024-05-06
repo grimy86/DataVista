@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DataVista.Library.Interfaces
+namespace DataVista.Database.Interface
 {
-    public interface IDatabaseConnection : IDisposable
+    public interface IConnection : IDisposable
     {
         #region PROPERTIES
         /// <summary>

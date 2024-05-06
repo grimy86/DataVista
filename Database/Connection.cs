@@ -1,4 +1,4 @@
-﻿using DataVista.Library.Interfaces;
+﻿using DataVista.Database.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +15,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DataVista.Library.Classes
+namespace DataVista.Database
 {
-    internal class DatabaseConnection : IDatabaseConnection, IDisposable
+    internal class Connection : IConnection, IDisposable
     {
         #region FIELDS
         private bool _disposed = false;
@@ -30,7 +30,7 @@ namespace DataVista.Library.Classes
         #endregion
 
         #region CONSTRUCTOR & DESTRUCTOR
-        public DatabaseConnection(SqlConnection sqlConnection)
+        public Connection(SqlConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
 
@@ -45,12 +45,17 @@ namespace DataVista.Library.Classes
         }
 
         /// <summary>
-        /// Destructor required to make the <see cref="DatabaseConnection"/> of type <see cref="IDisposable"./>
+        /// Destructor required to make the <see cref="Connection"/> of type <see cref="IDisposable"./>
         /// </summary>
-        ~DatabaseConnection()
+        ~Connection()
         {
             _disposed = true;
-            _sqlConnection.Dispose();
+
+            if (_sqlConnection != null)
+            {
+                _sqlConnection.Dispose();
+            }
+
             Dispose(true);
         }
         #endregion

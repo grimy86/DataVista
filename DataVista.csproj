@@ -12,7 +12,7 @@
     <Description>DataVista is a .NET library for interacting with databases using ADO.NET and providing system management utilities for WPF applications.</Description>
     <Copyright>https://github.com/ag-86/DataVista/blob/master/LICENSE.txt</Copyright>
     <PackageProjectUrl>https://github.com/ag-86/DataVista/</PackageProjectUrl>
-    <PackageIcon>Knight.jpg</PackageIcon>
+    <PackageIcon>DataVista.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ag-86/DataVista/</RepositoryUrl>
     <PackageTags>ADO,system,management,WPF,Data,Vista,DataVista</PackageTags>
@@ -22,10 +22,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Pictures\Wallpapers\Minimal\Knight.jpg">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <Compile Remove="Resources\CodeSnippets\CodeSnippets.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Documents\DataVista.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\CodeSnippets\CodeSnippets.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +47,18 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Documents\DataVista.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Documents\Class Diagrams\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using DataVista.Library.Interfaces;
+﻿using DataVista.System.Interface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DataVista.Library.Classes
+namespace DataVista.System
 {
-    public class SystemManager : ISystemManager
+    public class Manager : ISystemManager
     {
         #region FIELDS
         private string? _hardwareID;
@@ -20,7 +20,7 @@ namespace DataVista.Library.Classes
         #endregion
 
         #region CONSTRUCTOR
-        public SystemManager()
+        public Manager()
         {
             using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor"))
             {
@@ -38,7 +38,14 @@ namespace DataVista.Library.Classes
         {
             get
             {
-                return _hardwareID;
+                if (_hardwareID != null)
+                {
+                    return _hardwareID;
+                }
+                else
+                {
+                    return _hardwareID = string.Empty;
+                }
             }
         }
 
@@ -46,7 +53,14 @@ namespace DataVista.Library.Classes
         {
             get
             {
-                return _processorName;
+                if (_processorName != null)
+                {
+                    return _processorName;
+                }
+                else
+                {
+                    return _processorName = string.Empty;
+                }
             }
         }
 
@@ -86,7 +100,7 @@ namespace DataVista.Library.Classes
             return stringBuilder.ToString();
         }
 
-        public string GetMachineID()
+        public string GetEnvironment()
         {
             string environment =
                 $"[HWID: {HardwareID}] {Environment.NewLine}" +

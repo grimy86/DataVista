@@ -1,4 +1,4 @@
-﻿using DataVista.Library.Interfaces;
+﻿using DataVista.Database.Interface;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,31 +11,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DataVista.Library.Classes
+namespace DataVista.Database
 {
-    public class DatabaseOperation
+    public class Operation
     {
         #region FIELDS
-        private readonly IDatabaseConnection _databaseConnection;
+        private readonly IConnection _Connection;
         #endregion
 
         #region CONSTRUCTORS
         /// <summary>
         /// Pass a connectionhandler to use for DbOperations
         /// <para>ConnectionHandler requires a SqlConnection !</para>
-        /// <see cref="IDatabaseConnection"/>
+        /// <see cref="IConnection"/>
         /// </summary>
         /// <param name="connectionHandler">The IDatabaseConnection implementation to use.</param>
         /// <exception cref="ArgumentNullException">Thrown if connectionHandler is null.</exception>
-        public DatabaseOperation(IDatabaseConnection databaseConnection)
+        public Operation(IConnection Connection)
         {
-            if (databaseConnection != null)
+            if (Connection != null)
             {
-                _databaseConnection = databaseConnection;
+                _Connection = Connection;
             }
             else
             {
-                throw new ArgumentNullException(nameof(databaseConnection));
+                throw new ArgumentNullException(nameof(Connection));
             }
         }
 
@@ -43,31 +43,31 @@ namespace DataVista.Library.Classes
         /// Implements a default SqlConnection and IDbConnectionHandler type.
         /// </summary>
         /// <exception cref="ArgumentNullException"></exception>
-        public DatabaseOperation()
+        public Operation()
         {
             SqlConnection sqlConnection = new SqlConnection();
-            IDatabaseConnection databaseConnection = new DatabaseConnection(sqlConnection);
+            IConnection Connection = new Connection(sqlConnection);
 
-            if ((databaseConnection != null) && (databaseConnection.ConnectionString != null))
+            if (Connection != null && Connection.ConnectionString != null)
             {
-                _databaseConnection = databaseConnection;
+                _Connection = Connection;
             }
             else
             {
-                throw new ArgumentNullException(nameof(databaseConnection));
+                throw new ArgumentNullException(nameof(Connection));
             }
         }
         #endregion
 
         #region PROPERTIES
         /// <summary>
-        /// Returns a DbConnectionHandler.
+        /// Returns a <see cref="IConnection"/>.
         /// </summary>
-        public IDatabaseConnection DatabaseConnection
+        public IConnection Connection
         {
             get
             {
-                return _databaseConnection;
+                return _Connection;
             }
         }
         #endregion
@@ -91,12 +91,12 @@ namespace DataVista.Library.Classes
         {
             DataTable dataTable = new DataTable();
 
-            using (_databaseConnection.SqlConnection)
+            using (_Connection.SqlConnection)
             {
-                _databaseConnection.SqlConnection.Open();
+                _Connection.SqlConnection.Open();
 
                 SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Connection = _databaseConnection.SqlConnection;
+                sqlCommand.Connection = _Connection.SqlConnection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.CommandText = procedureName;
 
@@ -105,7 +105,7 @@ namespace DataVista.Library.Classes
                     dataTable.Load(dataReader);
                 }
             }
-            _databaseConnection.SqlConnection.Close();
+            _Connection.SqlConnection.Close();
             return dataTable;
         }
 
@@ -119,15 +119,14 @@ namespace DataVista.Library.Classes
         public DataTable ExecuteParameterizedProcedure(string procedureName, string parameterName, object value)
         {
             DataTable dataTable = new DataTable();
-
             SqlParameter sqlParameter = new SqlParameter(parameterName, value);
 
-            using (_databaseConnection.SqlConnection)
+            using (_Connection.SqlConnection)
             {
-                _databaseConnection.SqlConnection.Open();
+                _Connection.SqlConnection.Open();
 
                 SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Connection = _databaseConnection.SqlConnection;
+                sqlCommand.Connection = _Connection.SqlConnection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.CommandText = procedureName;
                 sqlCommand.Parameters.AddWithValue(parameterName, value);
@@ -136,7 +135,7 @@ namespace DataVista.Library.Classes
                 {
                     dataTable.Load(dataReader);
                 }
-                _databaseConnection.SqlConnection.Close();
+                _Connection.SqlConnection.Close();
             }
             return dataTable;
         }
@@ -152,18 +151,18 @@ namespace DataVista.Library.Classes
         {
             DataTable dataTable = new DataTable();
 
-            using (_databaseConnection.SqlConnection)
+            using (_Connection.SqlConnection)
             {
-                _databaseConnection.SqlConnection.Open();
+                _Connection.SqlConnection.Open();
 
-                using (SqlCommand sqlCommand = new SqlCommand(query, _databaseConnection.SqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
                 {
                     using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     {
                         dataTable.Load(dataReader);
                     }
                 }
-                _databaseConnection.SqlConnection.Close();
+                _Connection.SqlConnection.Close();
             }
             return dataTable;
         }
@@ -179,15 +178,15 @@ namespace DataVista.Library.Classes
         {
             object? result = null;
 
-            using (_databaseConnection.SqlConnection)
+            using (_Connection.SqlConnection)
             {
-                _databaseConnection.SqlConnection.Open();
+                _Connection.SqlConnection.Open();
 
-                using (SqlCommand sqlCommand = new SqlCommand(query, _databaseConnection.SqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
                 {
                     result = sqlCommand.ExecuteScalar();
                 }
-                _databaseConnection.SqlConnection.Close();
+                _Connection.SqlConnection.Close();
             }
             return result;
         }
@@ -202,15 +201,15 @@ namespace DataVista.Library.Classes
         {
             int rowsAffected = 0;
 
-            using (_databaseConnection.SqlConnection)
+            using (_Connection.SqlConnection)
             {
-                _databaseConnection.SqlConnection.Open();
+                _Connection.SqlConnection.Open();
 
-                using (SqlCommand sqlCommand = new SqlCommand(query, _databaseConnection.SqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
                 {
                     rowsAffected = sqlCommand.ExecuteNonQuery();
                 }
-                _databaseConnection.SqlConnection.Close();
+                _Connection.SqlConnection.Close();
             }
             return rowsAffected;
         }
@@ -227,11 +226,11 @@ namespace DataVista.Library.Classes
             DataTable dataTable = new DataTable();
             SqlParameter sqlParameter = new SqlParameter(parameterName, value);
 
-            using (_databaseConnection.SqlConnection)
+            using (_Connection.SqlConnection)
             {
-                _databaseConnection.SqlConnection.Open();
+                _Connection.SqlConnection.Open();
 
-                using (SqlCommand sqlCommand = new SqlCommand(query, _databaseConnection.SqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
                 {
                     sqlCommand.Parameters.AddWithValue(parameterName, value);
 
@@ -240,7 +239,7 @@ namespace DataVista.Library.Classes
                         dataTable.Load(dataReader);
                     }
                 }
-                _databaseConnection.SqlConnection.Close();
+                _Connection.SqlConnection.Close();
             }
             return dataTable;
         }

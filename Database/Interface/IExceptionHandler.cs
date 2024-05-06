@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataVista.Library.Interfaces
+namespace DataVista.Database.Interface
 {
     internal interface IExceptionHandler
     {
+        //TO DO
     }
 }
