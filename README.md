@@ -13,15 +13,15 @@ DataVista is a .NET library for interacting with databases using ADO.NET and pro
 
 ## Namespace DataVista
 ### DataVista.Database
-<img src="https://imgdb.net/17568" height="75" width="75"">
-<img src="https://imgdb.net/17569" height="75" width="75"">
+<img src="\Resources\Documents\Class Diagrams\Connection.png" height="75" width="75"">
+<img src=".\Resources\Documents\Class Diagrams\Operation.png" height="75" width="75"">
 
 ### DataVista.System
-<img src="https://imgdb.net/17570" height="75" width="75"">
-<img src="https://imgdb.net/17571" height="75" width="75"">
+<img src="/Resources/Documents/Class Diagrams/Manager.png" height="75" width="75"">
+<img src="./Resources/Documents/Class Diagrams/Framerate.png" height="75" width="75"">
   
 ### DataVista.Extensions
-<img src="https://imgdb.net/17572" height="75" width="75"">
+<img src="../../../Extensions.png" height="75" width="75"">
 
 
 <div align="center">
