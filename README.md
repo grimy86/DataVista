@@ -1,9 +1,8 @@
-<div align="center">
 # DataVista
+<div align="center">
 DataVista is a .NET library for interacting with databases using ADO.NET and providing system management utilities for WPF applications.
 </div>
 
-<div align="left">
 ## NuGet package
 [DataVista](https://www.nuget.org/packages/DataVista/1.0.0)
 
@@ -23,7 +22,7 @@ DataVista is a .NET library for interacting with databases using ADO.NET and pro
   
 ### DataVista.Extensions
 <img src="https://imgdb.net/17572" height="75" width="75"">
-</div>
+
 
 <div align="center">
 See DataVista\Resources\ for more documentation on how to use the library.
