@@ -23,5 +23,5 @@ DataVista is a .NET library for interacting with databases using ADO.NET and pro
 
 
 <div align="center">
-See DataVista\Resources\ for more documentation on how to use the library.
+[See DataVista\Resources\CodeSnippets for more documentation on how to use the library.](./Resources/CodeSnippets/example.txt)
 </div>
