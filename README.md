@@ -10,18 +10,16 @@ DataVista is a .NET library for interacting with databases using ADO.NET and pro
 - [System.Management](https://www.nuget.org/packages/System.Management/)
 
 ## Namespace DataVista
-### DataVista.Database
-<img src="./Resources/Documents/Class%20Diagrams/Connection.png" height="150" width="150">
-<img src="./Resources/Documents/Class%20Diagrams/Operation.png" height="150" width="150">
+| Database             | System       |Extensions   |
+| :------------------- | :----------- | :---------- |
+| Connection.cs        | Manager.cs   | Methods.cs  |
+| Operation.cs         | Framerate.cs |             |
 
-### DataVista.System
-<img src="./Resources/Documents/Class%20Diagrams/Manager.png" height="150" width="150">
-<img src="./Resources/Documents/Class%20Diagrams/Framerate.png" height="150" width="150">
-  
-### DataVista.Extensions
-<img src="./Resources/Documents/Class%20Diagrams/Extensions.png" height="150" width="150">
+### Docs
+[ApplicationExample]: [https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample]
+[CodeSnippets]: [https://github.com/ag-86/DataVista/tree/master/Resources/CodeSnippets]
+[ClassDiagrams]: [https://github.com/ag-86/DataVista/tree/master/Resources/Documents/Class%20Diagrams]
 
-
-<div align="center">
-[See DataVista\Resources\CodeSnippets for more documentation on how to use the library.](./Resources/CodeSnippets/example.txt)
-</div>
+  - [ApplicationExample][ApplicationExample]
+  - [CodeSnippets][CodeSnippets]
+  - [ClassDiagrams][ClassDiagrams]
