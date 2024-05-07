@@ -12,6 +12,8 @@ DataVista is a .NET library for:
   - [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient/)
   - [System.Management](https://www.nuget.org/packages/System.Management/)
 
+###
+
 ### Namespace
 | Database             | System       |Extensions   |
 | :------------------- | :----------- | :---------- |
@@ -22,6 +24,8 @@ DataVista is a .NET library for:
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
   - [Code snippets](https://github.com/ag-86/DataVista/tree/master/Resources/CodeSnippets)
   - [Class diagrams](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/Class%20Diagrams)
+
+###
 
 > [!IMPORTANT]
 > Make sure all prerequisites are icluded in the project.
