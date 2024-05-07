@@ -1,7 +1,8 @@
 # DataVista
 DataVista is a .NET library for:
-  - database interaction with ADO.NET
-  - system management utilities
+  - Database interactions - System.Data.SqlClient (ADO.NET)
+  - System management utilities - System.Management (WMI)
+  - WPF
 
 ## NuGet package
 [DataVista](https://www.nuget.org/packages/DataVista/)
