@@ -111,5 +111,37 @@ namespace DataVista.System
             return environment;
         }
         #endregion
+
+        #region NOT IMPLEMENTED
+        /*
+                public static string GetRegistryKeys()
+                {
+                    string registryKeys = String.Empty;
+
+                    return registryKeys;
+                }
+
+                public static string GetProcessHandles()
+                {
+                    Process[] runningProcesses = Process.GetProcesses();
+                    HashSet<nint> uniqueHandles = new HashSet<nint>();
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    foreach (Process process in runningProcesses)
+                    {
+                        if (process.Id != 0 && process.Id != 4)
+                        {
+                            if (!uniqueHandles.Contains(process.Handle))
+                            {
+                                uniqueHandles.Add(process.Handle);
+
+                                stringBuilder.AppendLine($"{process.Handle}");
+                            }
+                        }
+                    }
+                    return stringBuilder.ToString();
+                }
+        */
+        #endregion
     }
 }

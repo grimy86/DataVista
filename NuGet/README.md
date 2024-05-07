@@ -1,10 +1,10 @@
-
+﻿
 # DataVista
 DataVista is a .NET library for:
 
-    - Database interactions - System.Data.SqlClient (ADO.NET)
-    - System management utilities - System.Management (WMI)
-    - WPF
+	- Database interactions - System.Data.SqlClient (ADO.NET)
+	- System management utilities - System.Management (WMI)
+	- WPF
 
 ## NuGet package
 - [nuget.org/packages/DataVista](https://www.nuget.org/packages/DataVista/)
@@ -15,8 +15,7 @@ DataVista is a .NET library for:
 - [System.Management](https://www.nuget.org/packages/System.Management/)
 
 ### Namespace
-```mermaid
-graph TD;
+```
 	DataVista --> Database
 	DataVista --> System
 	DataVista --> Extensions

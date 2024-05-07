@@ -27,7 +27,7 @@ class UsingOperation
 #endregion
 
 #region DataVista.System.Manager example
-class UsingOperation
+class UsingManager
 {
     TextBlock textBlock = new TextBlock();
 
