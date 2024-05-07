@@ -7,7 +7,6 @@ DataVista is a .NET library for:
 ## NuGet package
 [DataVista](https://www.nuget.org/packages/DataVista/)
 
-## Prerequisites
 > [!IMPORTANT]
 > Prerequisites
   - [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient/)
