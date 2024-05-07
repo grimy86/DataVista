@@ -2,7 +2,7 @@
 DataVista is a .NET library for interacting with databases using ADO.NET and providing system management utilities for WPF applications.
 
 ## NuGet package
-[DataVista](https://www.nuget.org/packages/DataVista/1.0.0)
+[DataVista](https://www.nuget.org/packages/DataVista/)
 
 ## Prerequisites
 - .NET 8.0
@@ -16,10 +16,6 @@ DataVista is a .NET library for interacting with databases using ADO.NET and pro
 | Operation.cs         | Framerate.cs |             |
 
 ### Docs
-[ApplicationExample]: [https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample]
-[CodeSnippets]: [https://github.com/ag-86/DataVista/tree/master/Resources/CodeSnippets]
-[ClassDiagrams]: [https://github.com/ag-86/DataVista/tree/master/Resources/Documents/Class%20Diagrams]
-
-  - [ApplicationExample][ApplicationExample]
-  - [CodeSnippets][CodeSnippets]
-  - [ClassDiagrams][ClassDiagrams]
+  - [ApplicationExample](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
+  - [CodeSnippets](https://github.com/ag-86/DataVista/tree/master/Resources/CodeSnippets)
+  - [ClassDiagrams](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/Class%20Diagrams)
