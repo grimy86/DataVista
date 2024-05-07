@@ -9,9 +9,11 @@ DataVista is a .NET library for:
 
 ## Prerequisites
 > [!IMPORTANT]
-> .NET 8.0
-> [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient/)
-> [System.Management](https://www.nuget.org/packages/System.Management/)
+> Prerequisites
+```
+[System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient/)
+[System.Management](https://www.nuget.org/packages/System.Management/)
+```
 
 
 ### Namespace
