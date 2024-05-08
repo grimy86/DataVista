@@ -1,4 +1,5 @@
 
+
 # DataVista
 DataVista is a .NET library for:
 
@@ -14,7 +15,34 @@ DataVista is a .NET library for:
 - [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient/)
 - [System.Management](https://www.nuget.org/packages/System.Management/)
 
-### Namespace
+## Quick Start
+### 1. Add the NuGet package to your project
+[Install NuGet client tools](https://learn.microsoft.com/en-us/nuget/install-nuget-client-tools?tabs=windows)
+
+### 2. Setting up the App.config file (optional)
+[Add an application configuration file to a C# project](https://learn.microsoft.com/en-us/visualstudio/ide/how-to-add-app-config-file?view=vs-2022)
+Now connectionstring to the App.config. Configure this for what suits your needs.
+```xml
+<?xml  version="1.0"  encoding="utf-8" ?>
+<configuration>
+ <configSections>
+ </configSections>
+ <connectionStrings>
+ <add  name="MyConncetionString"
+  connectionString="Data Source=MyServerName;
+ Initial Catalog=MyDataBaseName;
+ Integrated Security=True;
+ Persist Security Info=False;
+ Pooling=True;
+ MultipleActiveResultSets=True;
+ TrustServerCertificate=True"/>
+ </connectionStrings>
+</configuration>
+```
+This step is optional because you could always use DataVista.Connection.CreateConnectionString().
+
+### 3. Add the namespace using statement to your .cs file.
+#### Namespace
 ```mermaid
 graph TD;
 	DataVista --> Database
@@ -26,9 +54,11 @@ graph TD;
 	System --> Framerate.cs
 	Extensions --> Methods.cs
 ```
-
-### Docs
+## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
-  - [Code snippets](https://github.com/ag-86/DataVista/tree/master/Resources/CodeSnippets)
+  - [Code example](https://github.com/ag-86/DataVista/blob/master/Resources/CodeSnippets/CodeSnippets.cs)
   - [Class diagrams](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/Class%20Diagrams)
 
+
+> [!IMPORTANT]
+> DataVista.Database.Connection constructor will read the connectionString from the App.config file
