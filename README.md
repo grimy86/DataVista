@@ -43,7 +43,11 @@ Configure this string for what suits your needs.
 ```
 
 This step is optional because you could always use DataVista.Connection.CreateConnectionString().
+
 Or you could use the [SqlConnectionStringBuilder Class](https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnectionstringbuilder?view=dotnet-plat-ext-5.0).
+
+> [!NOTE]
+> Make sure to use the right constructor when altering the connectionstring.
 
 ### 3. Add the namespace using statement to your .cs file.
 #### Namespace
