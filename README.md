@@ -21,7 +21,9 @@ DataVista is a .NET library for:
 
 ### 2. Setting up the App.config file (optional)
 [Add an application configuration file to a C# project](https://learn.microsoft.com/en-us/visualstudio/ide/how-to-add-app-config-file?view=vs-2022)
-Now connectionstring to the App.config. Configure this for what suits your needs.
+
+Configure this string for what suits your needs.
+
 ```xml
 <?xml  version="1.0"  encoding="utf-8" ?>
 <configuration>
@@ -39,7 +41,9 @@ Now connectionstring to the App.config. Configure this for what suits your needs
  </connectionStrings>
 </configuration>
 ```
+
 This step is optional because you could always use DataVista.Connection.CreateConnectionString().
+Or you could use the [SqlConnectionStringBuilder Class](https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnectionstringbuilder?view=dotnet-plat-ext-5.0).
 
 ### 3. Add the namespace using statement to your .cs file.
 #### Namespace
@@ -61,4 +65,4 @@ graph TD;
 
 
 > [!IMPORTANT]
-> DataVista.Database.Connection constructor will read the connectionString from the App.config file
+> DataVista.Database.Connection constructor(SqlConnection sqlConnection) will read the connectionString from the App.config file.
