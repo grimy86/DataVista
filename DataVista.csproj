@@ -20,7 +20,8 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <AnalysisLevel>none</AnalysisLevel>
     <Version>1.0.2</Version>
-    <PackageOutputPath>NuGet\Packages\</PackageOutputPath>
+    <PackageOutputPath>NuGet Packages\</PackageOutputPath>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,10 +43,6 @@
 
   <ItemGroup>
     <None Update="LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="NuGet\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

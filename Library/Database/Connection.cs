@@ -22,7 +22,6 @@ namespace DataVista.Database
         #region FIELDS
         private bool _disposed = false;
         private SqlConnection? _sqlConnection;
-
         /// <summary>
         /// Configured using <see cref="ConfigurationManager"/>
         /// </summary>
@@ -42,6 +41,11 @@ namespace DataVista.Database
             {
                 throw new DataException($"{this} failed to build ConnectionString");
             }
+        }
+
+        public Connection(string connectionString)
+        {
+            _sqlConnection = new SqlConnection(connectionString);
         }
 
         /// <summary>
