@@ -1,4 +1,6 @@
-﻿using DataVista.Database;
+﻿```cs
+using DataVista.Database;
+using DataVista.External;
 using DataVista.System;
 using System.Windows.Controls; //For the DataGrid & TextBlock
 
@@ -45,3 +47,16 @@ class UsingSystem
         textBlock.Text = WinProcess.UniqueProcesses;
     }
 }
+
+class UsingExternalLibrary
+{
+    int _oldUsers = 195;
+    int _newUsers = 75;
+
+    void ShowCoutput()
+    {
+        int totalUsers = DVC.Add(_oldUsers, _newUsers);
+        textBlock.Text = totalUsers.ToString();
+    }
+}
+```

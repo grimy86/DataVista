@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataVista.Library.External
+namespace DataVista.External
 {
     /// <summary>
     /// Class importing the DataVista C dll functions.

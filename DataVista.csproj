@@ -25,15 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Resources\CodeSnippets\CodeSnippets.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Resources\Documents\DataVista.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Resources\CodeSnippets\CodeSnippets.cs" />
   </ItemGroup>
 
   <ItemGroup>
