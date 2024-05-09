@@ -70,12 +70,11 @@ graph TD;
 > [!NOTE]
 > Make sure to add the proper [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/Library/External) in your project.
 
-step 1: Go into your solution explorer and select "Show All Files" or open the folder local to your solution.
-step 2: Locate /bin/Debug/ and /bin/Release/. These folders might contain other sub folders.
-step 3: copy the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/Library/External) into the Debug and Release binary.
+1. Go into your solution explorer and select "Show All Files" or open the folder local to your solution.
+2. Locate /bin/Debug/ and /bin/Release/. These folders might contain other sub folders.
+3. copy the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/Library/External) into the Debug and Release binary.
 
-In the end your solution explorer should look like this:
-
+#### In the end your solution explorer should look like this
 ![DVCexample](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/DVCexample.png)
 
 ## Docs
