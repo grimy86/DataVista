@@ -14,5 +14,8 @@ namespace DataVista.External
     {
         [DllImport("DVC.dll")]
         public static extern int Add(int a, int b);
+
+        [DllImport("DVC.dll")]
+        public static extern int Sub(int a, int b);
     }
 }
