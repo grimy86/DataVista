@@ -75,7 +75,7 @@ graph TD;
 3. copy the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/Library/External) into the Debug and Release binary.
 
 #### In the end your solution explorer should look like this
-![DVCexample](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/DVCexample.png)
+![DVCexample](https://github.com/ag-86/DataVista/blob/master/Resources/Documents/DVCexample.png)
 
 ## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
