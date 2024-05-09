@@ -72,7 +72,7 @@ graph TD;
 
 ## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
-  - [Code example](https://github.com/ag-86/DataVista/blob/master/Resources/CodeSnippets/CodeSnippets.cs)
+  - [Code example](https://github.com/ag-86/DataVista/blob/master/Resources/CodeSnippets/CodeSnippets.md)
   - [Class diagrams](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/Class%20Diagrams)
 
 
