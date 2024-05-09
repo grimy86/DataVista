@@ -65,6 +65,11 @@ graph TD;
 	Extensions --> Methods.cs
 	External --> DVC.cs
 ```
+
+### 4. To use methods from DataVista.External
+> [!NOTE]
+> Make sure to add the proper [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/Library/External) in your project.
+
 ## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
   - [Code example](https://github.com/ag-86/DataVista/blob/master/Resources/CodeSnippets/CodeSnippets.cs)
