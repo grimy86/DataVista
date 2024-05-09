@@ -22,6 +22,7 @@ namespace DataVista.Database
         #region FIELDS
         private bool _disposed = false;
         private SqlConnection? _sqlConnection;
+
         /// <summary>
         /// Configured using <see cref="ConfigurationManager"/>
         /// </summary>

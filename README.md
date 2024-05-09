@@ -1,11 +1,10 @@
 
-
 # DataVista
 DataVista is a .NET library for:
 
-    - Database interactions - System.Data.SqlClient (ADO.NET)
-    - System management utilities - System.Management (WMI)
-    - WPF
+	- Database interactions - System.Data.SqlClient (ADO.NET)
+	- System management utilities - System.Management (WMI)
+	- WPF
 
 ## NuGet package
 - [nuget.org/packages/DataVista](https://www.nuget.org/packages/DataVista/)
@@ -30,7 +29,7 @@ Configure this string for what suits your needs.
  <configSections>
  </configSections>
  <connectionStrings>
- <add  name="MyConncetionString"
+ <add  name="MyConnectionString"
   connectionString="Data Source=MyServerName;
  Initial Catalog=MyDataBaseName;
  Integrated Security=True;
@@ -58,7 +57,9 @@ graph TD;
 	DataVista --> Extensions
 	Database --> Connection.cs
 	Database --> Operation.cs
-	System --> Manager.cs
+	System --> Hardware.cs
+	System --> WinPath.cs
+	System --> WinProcess.cs
 	System --> Framerate.cs
 	Extensions --> Methods.cs
 ```

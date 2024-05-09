@@ -1,6 +1,7 @@
 ﻿using DataVista.System.Interface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
@@ -12,7 +13,7 @@ using System.Windows.Controls;
 
 namespace DataVista.System
 {
-    public class Manager : ISystemManager
+    public class Hardware : ISystemManager
     {
         #region FIELDS
         private string? _hardwareID;
@@ -20,7 +21,7 @@ namespace DataVista.System
         #endregion
 
         #region CONSTRUCTOR
-        public Manager()
+        public Hardware()
         {
             using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor"))
             {
@@ -82,25 +83,7 @@ namespace DataVista.System
         #endregion
 
         #region METHODS
-        public static string GetUniqueProcesses()
-        {
-            Process[] runningProcesses = Process.GetProcesses();
-            HashSet<string> uniqueProcesses = new HashSet<string>();
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (Process process in runningProcesses)
-            {
-                if (!uniqueProcesses.Contains(process.ProcessName))
-                {
-                    uniqueProcesses.Add(process.ProcessName);
-
-                    stringBuilder.AppendLine($"{process.Id}  :  {process.ProcessName}");
-                }
-            }
-            return stringBuilder.ToString();
-        }
-
-        public string GetEnvironment()
+        public override string ToString()
         {
             string environment =
                 $"[HWID: {HardwareID}] {Environment.NewLine}" +
@@ -112,7 +95,7 @@ namespace DataVista.System
         }
         #endregion
 
-        #region NOT IMPLEMENTED
+        #region EXPERIMENTAL
         /*
                 public static string GetRegistryKeys()
                 {
