@@ -68,14 +68,14 @@ graph TD;
 
 ### 4. To use methods from DataVista.External, add the DLL file(s) (optional)
 > [!NOTE]
-> Make sure to add the proper [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release/) in your project.
+> Make sure to add the proper [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) in your project.
 
 1. Go into your solution explorer and select "Show All Files" or open the folder local to your solution.
-2. Locate /bin/Debug/ and /bin/Release/. These folders might contain other sub folders.
-3. copy the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release/) into the Debug and Release binary.
+2. Add the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) either manually directly to the /bin/Debug/ and /bin/Release/ folders. OR add the DLL anywhere in the project. Go to properties and set the "Copy to Output Directory" property to "Copy always" or "Copy if newer".
 
 #### In the end your solution explorer should look like this
-![DVCexample](https://github.com/ag-86/DataVista/blob/master/Resources/Documents/DVCexample.png)
+
+![DVCexample](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/DVCexample.png)
 
 ## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
