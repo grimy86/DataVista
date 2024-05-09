@@ -2,8 +2,7 @@
 using DataVista.System;
 using System.Windows.Controls; //For the DataGrid & TextBlock
 
-#region DataVista.Database.Operation example
-class UsingOperation
+class UsingDatabase
 {
     DataGrid dataGrid = new DataGrid();
     string query = "SELECT TOP (50) * FROM [Northwind].[dbo].[Customers]";
@@ -19,15 +18,13 @@ class UsingOperation
     void FillWithExtensionMethod()
     {
         DataTable dataTable = new DataTable();
-
         dataTable.ExecuteReader(query);
+
         dataGrid.ItemsSource = dataTable.DefaultView;
     }
 }
-#endregion
 
-#region DataVista.System.Manager example
-class UsingManager
+class UsingSystem
 {
     TextBlock textBlock = new TextBlock();
 
@@ -39,13 +36,12 @@ class UsingManager
 
     void ShowEnvironment()
     {
-        Manager manager = new Manager();
-        textBlock.Text = manager.GetEnvironment();
+        Hardware hardware = new Hardware();
+        textBlock.Text = hardware.ToString();
     }
 
     void ShowUniqueProcesses()
     {
-        textBlock.Text = Manager.GetUniqueProcesses();
+        textBlock.Text = WinProcess.UniqueProcesses;
     }
 }
-#endregion

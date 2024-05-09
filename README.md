@@ -55,6 +55,7 @@ graph TD;
 	DataVista --> Database
 	DataVista --> System
 	DataVista --> Extensions
+	DataVista --> External
 	Database --> Connection.cs
 	Database --> Operation.cs
 	System --> Hardware.cs
@@ -62,6 +63,7 @@ graph TD;
 	System --> WinProcess.cs
 	System --> Framerate.cs
 	Extensions --> Methods.cs
+	External --> DVC.cs
 ```
 ## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
