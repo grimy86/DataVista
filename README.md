@@ -88,4 +88,4 @@ Add the DLL anywhere in the project. Open up the DLL file properties and set the
 
 
 > [!IMPORTANT]
-> DataVista.Database.Connection constructor(SqlConnection sqlConnection) will read the connectionString from the App.config file.
+> Call the appropriate constructor, DataVista.Database.**Connection(SqlConnection sqlConnection)** **will read the connectionString from the App.config file**.
