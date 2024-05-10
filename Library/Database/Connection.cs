@@ -17,7 +17,7 @@ using System.Windows.Media;
 
 namespace DataVista.Database
 {
-    internal class Connection : IConnection, IDisposable
+    public class Connection : IConnection, IDisposable
     {
         #region FIELDS
         private bool _disposed = false;
