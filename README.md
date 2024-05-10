@@ -47,20 +47,28 @@ Or you could use the [SqlConnectionStringBuilder Class](https://learn.microsoft.
 ### 3. Add the namespace using statement to your .cs file.
 #### Namespace
 ```mermaid
-graph TD;
+graph LR;
+	SQL[(Database)] -.-> Connection.cs
+
 	DataVista --> Database
 	DataVista --> System
 	DataVista --> Extensions
 	DataVista --> External
+	
 	Database --> Connection.cs
 	Database --> Operation.cs
 	Database --> DataConverter.cs
+	
 	System --> Hardware.cs
 	System --> WinPath.cs
 	System --> WinProcess.cs
 	System --> Framerate.cs
+	
 	Extensions --> Methods.cs
+	
 	External --> DVC.cs
+	
+	DVC.dll -. C library.-> External
 ```
 
 ### 4. To use methods from DataVista.External, add the DLL file(s) (optional)
