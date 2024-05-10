@@ -1,10 +1,9 @@
 
 # DataVista
 DataVista is a .NET library for:
-
-	- Database interactions - System.Data.SqlClient (ADO.NET)
-	- System management utilities - System.Management (WMI)
-	- WPF
+- Database interactions - System.Data.SqlClient (ADO.NET)
+- System management utilities - System.Management (WMI)
+- WPF
 
 ## NuGet package
 - [nuget.org/packages/DataVista](https://www.nuget.org/packages/DataVista/)
@@ -18,7 +17,7 @@ DataVista is a .NET library for:
 ### 1. Add the NuGet package to your project
 [Install NuGet client tools](https://learn.microsoft.com/en-us/nuget/install-nuget-client-tools?tabs=windows)
 
-### 2. Setting up the App.config file (optional)
+### 2. Setting up the App.config file (for database interactions)
 [Add an application configuration file to a C# project](https://learn.microsoft.com/en-us/visualstudio/ide/how-to-add-app-config-file?view=vs-2022)
 
 Configure this string for what suits your needs.
@@ -68,12 +67,20 @@ graph TD;
 ```
 
 ### 4. To use methods from DataVista.External, add the DLL file(s) (optional)
+#### Step 1
+Go into your solution explorer and select "Show All Files" or open the folder local to your solution.
+
+#### Step 2
+Add the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) manually, directly to the /bin/Debug/ and /bin/Release/ folders.
+
+![DVCexample](https://raw.githubusercontent.com/ag-86/DataVista/master/Resources/Documents/DVCexample.png)
+
+**OR**
+
+Add the DLL anywhere in the project. Open up the DLL file properties and set the "Copy to Output Directory" property to "Copy always" or "Copy if newer".
+
 > [!NOTE]
-> Make sure to add the proper [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) in your project.
-
-1. Go into your solution explorer and select "Show All Files" or open the folder local to your solution.
-2. Add the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) either manually directly to the /bin/Debug/ and /bin/Release/ folders. OR add the DLL anywhere in the project. Go to properties and set the "Copy to Output Directory" property to "Copy always" or "Copy if newer". [Your /bin/ should look somewhat like this.](https://github.com/ag-86/DataVista/tree/master/Resources/Documents/DVCexample.png)
-
+> Make sure to keep the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) up to date.
 ## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
   - [Code example](https://github.com/ag-86/DataVista/blob/master/Resources/CodeSnippets/CodeSnippets.md)
