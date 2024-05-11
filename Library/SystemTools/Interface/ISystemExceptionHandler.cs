@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataVista.System.Interface
+namespace DataVista.SystemTools.Interface
 {
     internal interface ISystemExceptionHandler
     {

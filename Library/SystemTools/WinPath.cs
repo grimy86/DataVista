@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataVista.System
+namespace DataVista.SystemTools
 {
     public class WinPath
     {

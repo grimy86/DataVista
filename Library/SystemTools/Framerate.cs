@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DataVista.System
+namespace DataVista.SystemTools
 {
     public class Framerate
     {

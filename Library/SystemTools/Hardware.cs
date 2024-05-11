@@ -1,4 +1,4 @@
-﻿using DataVista.System.Interface;
+﻿using DataVista.SystemTools.Interface;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DataVista.System
+namespace DataVista.SystemTools
 {
     public class Hardware : ISystemManager
     {

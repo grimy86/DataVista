@@ -72,39 +72,7 @@ namespace DataVista.Extensions
         #endregion
 
         #region EXPERIMENTAL
-        public static void PrintChanges(this DataSet dataSet, string result)
-        {
-            result = $"DataBaseName: {dataSet.DataSetName}{Environment.NewLine}";
-            result += $"Has changes: {dataSet.HasChanges()}{Environment.NewLine}";
-
-            foreach (DataTable dataTable in dataSet.Tables)
-            {
-                dataTable.PrintChanges(result);
-            }
-        }
-
-        public static void PrintChanges(this DataTable dataTable, string result)
-        {
-            result = $"DataTableName: {dataTable.TableName}{Environment.NewLine}";
-            result += $"Has changes: {dataTable.GetChanges()}{Environment.NewLine}";
-
-            foreach (DataRow dataRow in dataTable.Rows)
-            {
-                dataRow.PrintChanges(result);
-            }
-        }
-
-        public static void PrintChanges(this DataRow dataRow, string result)
-        {
-            string row = String.Empty;
-
-            foreach (DataColumn dataColumn in dataRow.Table.Columns)
-            {
-                row += dataRow[dataColumn].ToString() + "\t";
-            }
-
-            result += row;
-        }
+        //empty section
         #endregion
     }
 }

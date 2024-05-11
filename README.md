@@ -51,24 +51,24 @@ graph LR;
 	SQL[(Database)] -.-> Connection.cs
 
 	DataVista --> Database
-	DataVista --> System
+	DataVista --> SystemTools
 	DataVista --> Extensions
-	DataVista --> External
+	DataVista --> DLL
 	
 	Database --> Connection.cs
 	Database --> Operation.cs
 	Database --> DataConverter.cs
 	
-	System --> Hardware.cs
-	System --> WinPath.cs
-	System --> WinProcess.cs
-	System --> Framerate.cs
+	SystemTools --> Hardware.cs
+	SystemTools --> WinPath.cs
+	SystemTools --> WinProcess.cs
+	SystemTools --> Framerate.cs
 	
 	Extensions --> Methods.cs
 	
-	External --> DVC.cs
+	DLL --> DVC.cs
 	
-	DVC.dll -. C library.-> External
+	DVC.dll -. C library.-> DLL
 ```
 
 ### 4. To use methods from DataVista.External, add the DLL file(s) (optional)

@@ -1,32 +1,42 @@
-﻿using DataVista.System;
+﻿using DataVista.Extensions;
+using DataVista.SystemTools;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Shapes;
 
 namespace DataVista.Database
 {
     public class DataConverter
     {
-        private static string? _winpath = WinPath.MyDocuments + @"\DataConverter";
+        #region FIELDS
+        private static string? _winpath = SystemTools.WinPath.MyDocuments + @"\DataConverter";
+        #endregion
 
+        #region CONSTRUCTOR
         /// <summary>
         /// Needs constructor to verify <see cref="Path"/>
         /// </summary>
-        DataConverter()
+        public DataConverter()
         {
-            if (!Directory.Exists(Path))
+            if (!Directory.Exists(WinPath))
             {
-                Directory.CreateDirectory(Path);
+                Directory.CreateDirectory(WinPath);
             }
         }
+        #endregion
 
         #region PROPERTIES
-        public static string Path
+        public static string? WinPath
         {
             get
             {
@@ -39,11 +49,76 @@ namespace DataVista.Database
         }
         #endregion
 
+        #region SQL
+        /// <summary>
+        /// Pass in a valid full filepath
+        ///<para> Example: <code>string filePath = "C:\Users\Admin\source\repos\MyProject\SQL\Procedures.sql"</code></para>
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static string ReadSqlFile(string filePath)
+        {
+
+            string query = String.Empty;
+            string fileType = System.IO.Path.GetExtension(filePath).ToLower();
+
+            try
+            {
+                if (File.Exists(filePath) && fileType == ".sql")
+                {
+
+                    query = File.ReadAllText(filePath);
+
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid SQL file path provided.");
+                }
+            }
+            catch (Exception ex)
+            {
+                query = $"Query: {query} {Environment.NewLine}" +
+                    $"Exception: {ex}";
+            }
+            return query;
+        }
+
+        public static string ReadSqlDialog()
+        {
+            string query = String.Empty;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "SQL files (*.sql)|*.sql|All files (*.*)|*.*";
+            try
+            {
+                if (openFileDialog.ShowDialog() == true)
+                {
+
+                    string filePath = openFileDialog.FileName;
+                    query = File.ReadAllText(filePath);
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid SQL file path provided.");
+                }
+            }
+            catch (Exception ex)
+            {
+                query = $"Query: {query} {Environment.NewLine}" +
+                    $"Exception: {ex}";
+
+            }
+            return query;
+        }
+        #endregion
+
+        #region XML
         public void SerializeXml(DataSet dataSet)
         {
-            dataSet.WriteXmlSchema(Path);
-            dataSet.WriteXml(Path);
+            dataSet.WriteXmlSchema(WinPath);
+            dataSet.WriteXml(WinPath);
         }
+
         public void SerializeXml(DataSet dataSet, string winPath)
         {
             dataSet.WriteXmlSchema(winPath);
@@ -52,8 +127,8 @@ namespace DataVista.Database
 
         public DataSet DeSerializeXml(DataSet dataSet)
         {
-            dataSet.ReadXmlSchema(Path);
-            dataSet.ReadXml(Path);
+            dataSet.ReadXmlSchema(WinPath);
+            dataSet.ReadXml(WinPath);
 
             return dataSet;
         }
@@ -65,5 +140,6 @@ namespace DataVista.Database
 
             return dataSet;
         }
+        #endregion
     }
 }
