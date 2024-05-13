@@ -48,11 +48,6 @@ Or you could use the [SqlConnectionStringBuilder Class](https://learn.microsoft.
 #### Namespace
 ```mermaid
 graph LR;
-
-	DataVista --> Core
-	DataVista --> Database
-	DataVista --> SystemTools
-	
 	Core --> ExceptionHandler.cs
 	Core --> ExtensionMethods.cs
 	Core --> DVCDLL.cs
