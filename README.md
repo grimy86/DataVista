@@ -63,6 +63,7 @@ graph LR;
 	SystemTools --> WinPath.cs
 	SystemTools --> WinProcess.cs
 	SystemTools --> Framerate.cs
+	SystemTools --> MemoryUtil.cs
 	
 	Extensions --> Methods.cs
 	

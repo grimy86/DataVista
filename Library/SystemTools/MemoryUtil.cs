@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataVista.SystemTools
 {
-    unsafe public static class MemoryHandler
+    unsafe public static class MemoryUtil
     {
         #region EXPERIMENTAL / UNSAFE
         [DllImport("kernel32.dll", SetLastError = true)]
