@@ -12,10 +12,9 @@ namespace DataVista.DLL
     /// </summary>
     public class DVC
     {
-        [DllImport("DVC.dll")]
-        public static extern int Add(int a, int b);
-
-        [DllImport("DVC.dll")]
-        public static extern int Sub(int a, int b);
+        #region EXPERIMENTAL / UNSAFE
+        [DllImport("address_of_int.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern unsafe int* getAddressOfInt(int value);
+        #endregion
     }
 }

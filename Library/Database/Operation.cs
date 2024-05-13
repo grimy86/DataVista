@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -116,7 +117,7 @@ namespace DataVista.Database
         /// <param name="parameterName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public DataTable ExecuteParameterizedProcedure(string procedureName, string parameterName, object value)
+        public DataTable ExecuteSingleParamProcedure(string procedureName, string parameterName, object value)
         {
             DataTable dataTable = new DataTable();
             SqlParameter sqlParameter = new SqlParameter(parameterName, value);
@@ -242,6 +243,130 @@ namespace DataVista.Database
                 _Connection.SqlConnection.Close();
             }
             return dataTable;
+        }
+
+        /// <summary>
+        /// Example usage:
+        /// <code>string procedureName = "InsertUser";
+        /// bject[] values = { "John", "Doe", 30 };
+        /// string[] parameterNames = { "@FirstName", "@LastName", "@Age" };</code>
+        /// </summary>
+        /// <param name="procedureName"></param>
+        /// <param name="values"></param>
+        /// <param name="parameterNames"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public DataTable ExecuteMultiParamProcedure(string procedureName, object[] values, params string[] parameterNames)
+        {
+            DataTable dataTable = new DataTable();
+
+            if (parameterNames.Length != values.Length)
+            {
+                throw new ArgumentException("Number of parameter names must match number of values.");
+            }
+
+            using (_Connection.SqlConnection)
+            {
+                _Connection.SqlConnection.Open();
+
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = _Connection.SqlConnection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = procedureName;
+
+                for (int i = 0; i < parameterNames.Length; i++)
+                {
+                    sqlCommand.Parameters.AddWithValue(parameterNames[i], values[i]);
+                }
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(dataTable);
+
+                _Connection.SqlConnection.Close();
+            }
+            return dataTable;
+        }
+
+        public SqlDataReader ExecuteTransaction(string query)
+        {
+            SqlDataReader? sqlDataReader = null;
+
+            using (_Connection.SqlConnection)
+            {
+                _Connection.SqlConnection.Open();
+                SqlTransaction sqlTransaction = _Connection.SqlConnection.BeginTransaction();
+
+                try
+                {
+                    SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection, sqlTransaction);
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.ExecuteNonQuery();
+                    sqlTransaction.Commit();
+
+                    sqlDataReader = sqlCommand.ExecuteReader();
+                }
+                catch (Exception ex)
+                {
+                    sqlTransaction.Rollback();
+                    throw new Exception("Error executing transaction: " + ex.Message);
+                }
+                finally
+                {
+                    if (sqlDataReader != null && !sqlDataReader.IsClosed)
+                    {
+                        sqlDataReader.Close();
+                    }
+
+                    _Connection.SqlConnection.Close();
+                }
+                return sqlDataReader;
+            }
+        }
+
+        /// <summary>
+        /// Same as <see cref="ExecuteTransaction(string)"/> but with optional:
+        /// <code>sqlCommand.CommandText = query2;
+        ///sqlDataReader = sqlCommand.ExecuteReader();</code>
+        /// </summary>
+        /// <param name="query1"></param>
+        /// <param name="query2"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public SqlDataReader ExecuteTransactionReader(string query1, string query2)
+        {
+            SqlDataReader? sqlDataReader = null;
+
+            using (_Connection.SqlConnection)
+            {
+                _Connection.SqlConnection.Open();
+                SqlTransaction sqlTransaction = _Connection.SqlConnection.BeginTransaction();
+
+                try
+                {
+                    SqlCommand sqlCommand = new SqlCommand(query1, _Connection.SqlConnection, sqlTransaction);
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.ExecuteNonQuery();
+                    sqlTransaction.Commit();
+
+                    sqlCommand.CommandText = query2;
+                    sqlDataReader = sqlCommand.ExecuteReader();
+                }
+                catch (Exception ex)
+                {
+                    sqlTransaction.Rollback();
+                    throw new Exception("Error executing transaction: " + ex.Message);
+                }
+                finally
+                {
+                    if (sqlDataReader != null && !sqlDataReader.IsClosed)
+                    {
+                        sqlDataReader.Close();
+                    }
+
+                    _Connection.SqlConnection.Close();
+                }
+                return sqlDataReader;
+            }
         }
         #endregion
     }
