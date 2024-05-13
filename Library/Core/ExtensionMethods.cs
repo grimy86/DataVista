@@ -1,4 +1,5 @@
-﻿using DataVista.Database;
+﻿using DataVista.Core;
+using DataVista.Database;
 using System.Collections.Generic;
 using System.Data;
 using System.Security.Policy;
@@ -8,9 +9,9 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.XPath;
 
-namespace DataVista.Extensions
+namespace DataVista.Core
 {
-    public static class Methods
+    public static class ExtensionMethods
     {
         /// <summary>
         /// Sorts Enums by their logical index.
@@ -43,7 +44,7 @@ namespace DataVista.Extensions
         public static DataTable ExecuteReader(this DataTable dataTable, string query)
         {
             Operation operation = new Operation();
-            return operation.ExecuteSQL<DataTable>(query, operation.ExecuteReader);
+            return operation.ExecuteSQL(query, operation.ExecuteReader);
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace DataVista.Extensions
         public static object ExecuteScalar(this object result, string query)
         {
             Operation operation = new Operation();
-            return operation.ExecuteSQL<object>(query, operation.ExecuteScalar);
+            return operation.ExecuteSQL(query, operation.ExecuteScalar);
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace DataVista.Extensions
         public static int ExecuteNonQuery(this int result, string query)
         {
             Operation operation = new Operation();
-            return operation.ExecuteSQL<int>(query, operation.ExecuteNonQuery);
+            return operation.ExecuteSQL(query, operation.ExecuteNonQuery);
         }
         #endregion
 

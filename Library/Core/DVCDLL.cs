@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataVista.DLL
+namespace DataVista.Core
 {
     /// <summary>
     /// Class importing the DataVista C dll functions.
     /// </summary>
-    public class DVC
+    public class DVCDLL
     {
         #region EXPERIMENTAL / UNSAFE
         [DllImport("address_of_int.dll", CallingConvention = CallingConvention.Cdecl)]

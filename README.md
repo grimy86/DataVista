@@ -48,28 +48,28 @@ Or you could use the [SqlConnectionStringBuilder Class](https://learn.microsoft.
 #### Namespace
 ```mermaid
 graph LR;
-	SQL[(Database)] -.-> Connection.cs
 
+	DataVista --> Core
 	DataVista --> Database
 	DataVista --> SystemTools
-	DataVista --> Extensions
-	DataVista --> DLL
 	
-	Database --> Connection.cs
+	Core --> ExceptionHandler.cs
+	Core --> ExtensionMethods.cs
+	Core --> DVCDLL.cs
+	
+	DVC.dll --C library--- DVCDLL.cs
+	
 	Database --> Operation.cs
 	Database --> DataConverter.cs
-	
+	Database --> Connection.cs
+
+	SQL[(Database)] -.-> Connection.cs	
+
+	SystemTools --> Framerate.cs
 	SystemTools --> Hardware.cs
+	SystemTools --> MemoryUtil.cs
 	SystemTools --> WinPath.cs
 	SystemTools --> WinProcess.cs
-	SystemTools --> Framerate.cs
-	SystemTools --> MemoryUtil.cs
-	
-	Extensions --> Methods.cs
-	
-	DLL --> DVC.cs
-	
-	DVC.dll -. C library.-> DLL
 ```
 
 ### 4. To use methods from DataVista.External, add the DLL file(s) (optional)

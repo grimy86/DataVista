@@ -1,4 +1,7 @@
-﻿using DataVista.Database.Interface;
+﻿using DataVista.Core;
+using DataVista.Database;
+using DataVista.Database.Interface;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +10,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -92,21 +96,31 @@ namespace DataVista.Database
         {
             DataTable dataTable = new DataTable();
 
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Connection = _Connection.SqlConnection;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.CommandText = procedureName;
-
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                using (_Connection.SqlConnection)
                 {
-                    dataTable.Load(dataReader);
+                    _Connection.SqlConnection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand();
+                    sqlCommand.Connection = _Connection.SqlConnection;
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.CommandText = procedureName;
+
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        dataTable.Load(dataReader);
+                    }
                 }
             }
-            _Connection.SqlConnection.Close();
+            catch (Exception ex)
+            {
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+            }
+            finally
+            {
+                _Connection.SqlConnection.Close();
+            }
             return dataTable;
         }
 
@@ -121,21 +135,30 @@ namespace DataVista.Database
         {
             DataTable dataTable = new DataTable();
             SqlParameter sqlParameter = new SqlParameter(parameterName, value);
-
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Connection = _Connection.SqlConnection;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.CommandText = procedureName;
-                sqlCommand.Parameters.AddWithValue(parameterName, value);
-
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                using (_Connection.SqlConnection)
                 {
-                    dataTable.Load(dataReader);
+                    _Connection.SqlConnection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand();
+                    sqlCommand.Connection = _Connection.SqlConnection;
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.CommandText = procedureName;
+                    sqlCommand.Parameters.AddWithValue(parameterName, value);
+
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        dataTable.Load(dataReader);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+            }
+            finally
+            {
                 _Connection.SqlConnection.Close();
             }
             return dataTable;
@@ -151,18 +174,26 @@ namespace DataVista.Database
         public DataTable ExecuteReader(string query)
         {
             DataTable dataTable = new DataTable();
-
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-
-                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
+                using (_Connection.SqlConnection)
                 {
+                    _Connection.SqlConnection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection);
+
                     using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     {
                         dataTable.Load(dataReader);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+            }
+            finally
+            {
                 _Connection.SqlConnection.Close();
             }
             return dataTable;
@@ -178,15 +209,22 @@ namespace DataVista.Database
         public object ExecuteScalar(string query)
         {
             object? result = null;
-
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-
-                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
+                using (_Connection.SqlConnection)
                 {
+                    _Connection.SqlConnection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection);
                     result = sqlCommand.ExecuteScalar();
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+            }
+            finally
+            {
                 _Connection.SqlConnection.Close();
             }
             return result;
@@ -201,15 +239,22 @@ namespace DataVista.Database
         public int ExecuteNonQuery(string query)
         {
             int rowsAffected = 0;
-
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-
-                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
+                using (_Connection.SqlConnection)
                 {
+                    _Connection.SqlConnection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection);
                     rowsAffected = sqlCommand.ExecuteNonQuery();
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+            }
+            finally
+            {
                 _Connection.SqlConnection.Close();
             }
             return rowsAffected;
@@ -226,13 +271,13 @@ namespace DataVista.Database
         {
             DataTable dataTable = new DataTable();
             SqlParameter sqlParameter = new SqlParameter(parameterName, value);
-
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-
-                using (SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection))
+                using (_Connection.SqlConnection)
                 {
+                    _Connection.SqlConnection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection);
                     sqlCommand.Parameters.AddWithValue(parameterName, value);
 
                     using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
@@ -240,6 +285,13 @@ namespace DataVista.Database
                         dataTable.Load(dataReader);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+            }
+            finally
+            {
                 _Connection.SqlConnection.Close();
             }
             return dataTable;
@@ -264,24 +316,32 @@ namespace DataVista.Database
             {
                 throw new ArgumentException("Number of parameter names must match number of values.");
             }
-
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Connection = _Connection.SqlConnection;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.CommandText = procedureName;
-
-                for (int i = 0; i < parameterNames.Length; i++)
+                using (_Connection.SqlConnection)
                 {
-                    sqlCommand.Parameters.AddWithValue(parameterNames[i], values[i]);
+                    _Connection.SqlConnection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand();
+                    sqlCommand.Connection = _Connection.SqlConnection;
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.CommandText = procedureName;
+
+                    for (int i = 0; i < parameterNames.Length; i++)
+                    {
+                        sqlCommand.Parameters.AddWithValue(parameterNames[i], values[i]);
+                    }
+
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                    dataAdapter.Fill(dataTable);
                 }
-
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-                dataAdapter.Fill(dataTable);
-
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+            }
+            finally
+            {
                 _Connection.SqlConnection.Close();
             }
             return dataTable;
@@ -290,37 +350,40 @@ namespace DataVista.Database
         public SqlDataReader ExecuteTransaction(string query)
         {
             SqlDataReader? sqlDataReader = null;
+            SqlTransaction? sqlTransaction = null;
 
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-                SqlTransaction sqlTransaction = _Connection.SqlConnection.BeginTransaction();
-
-                try
+                using (_Connection.SqlConnection)
                 {
+                    _Connection.SqlConnection.Open();
+                    sqlTransaction = _Connection.SqlConnection.BeginTransaction();
+
                     SqlCommand sqlCommand = new SqlCommand(query, _Connection.SqlConnection, sqlTransaction);
                     sqlCommand.CommandType = CommandType.Text;
                     sqlCommand.ExecuteNonQuery();
                     sqlTransaction.Commit();
 
                     sqlDataReader = sqlCommand.ExecuteReader();
-                }
-                catch (Exception ex)
-                {
-                    sqlTransaction.Rollback();
-                    throw new Exception("Error executing transaction: " + ex.Message);
-                }
-                finally
-                {
-                    if (sqlDataReader != null && !sqlDataReader.IsClosed)
-                    {
-                        sqlDataReader.Close();
-                    }
 
-                    _Connection.SqlConnection.Close();
                 }
-                return sqlDataReader;
             }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+                throw new Exception("Error executing transaction: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlDataReader != null && !sqlDataReader.IsClosed)
+                {
+                    sqlDataReader.Close();
+                }
+
+                _Connection.SqlConnection.Close();
+            }
+            return sqlDataReader;
         }
 
         /// <summary>
@@ -335,14 +398,16 @@ namespace DataVista.Database
         public SqlDataReader ExecuteTransactionReader(string query1, string query2)
         {
             SqlDataReader? sqlDataReader = null;
+            SqlTransaction? sqlTransaction = null;
 
-            using (_Connection.SqlConnection)
+            try
             {
-                _Connection.SqlConnection.Open();
-                SqlTransaction sqlTransaction = _Connection.SqlConnection.BeginTransaction();
-
-                try
+                using (_Connection.SqlConnection)
                 {
+                    _Connection.SqlConnection.Open();
+                    sqlTransaction = _Connection.SqlConnection.BeginTransaction();
+
+
                     SqlCommand sqlCommand = new SqlCommand(query1, _Connection.SqlConnection, sqlTransaction);
                     sqlCommand.CommandType = CommandType.Text;
                     sqlCommand.ExecuteNonQuery();
@@ -351,22 +416,22 @@ namespace DataVista.Database
                     sqlCommand.CommandText = query2;
                     sqlDataReader = sqlCommand.ExecuteReader();
                 }
-                catch (Exception ex)
-                {
-                    sqlTransaction.Rollback();
-                    throw new Exception("Error executing transaction: " + ex.Message);
-                }
-                finally
-                {
-                    if (sqlDataReader != null && !sqlDataReader.IsClosed)
-                    {
-                        sqlDataReader.Close();
-                    }
-
-                    _Connection.SqlConnection.Close();
-                }
-                return sqlDataReader;
             }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+                throw new Exception("Error executing transaction: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlDataReader != null && !sqlDataReader.IsClosed)
+                {
+                    sqlDataReader.Close();
+                }
+                _Connection.SqlConnection.Close();
+            }
+            return sqlDataReader;
         }
         #endregion
     }

@@ -19,7 +19,7 @@ namespace DataVista.Database
     public class DataConverter
     {
         #region FIELDS
-        private static string? _winpath = SystemTools.WinPath.MyDocuments + @"\DataConverter";
+        private static string? _winpath = SystemTools.WinPath.MyDocuments + @"\Datavista\DataConverter\";
         #endregion
 
         #region CONSTRUCTOR
@@ -44,7 +44,7 @@ namespace DataVista.Database
             }
             set
             {
-                value = _winpath;
+                _winpath = value;
             }
         }
         #endregion
