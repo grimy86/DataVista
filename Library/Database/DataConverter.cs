@@ -1,5 +1,4 @@
-﻿using DataVista.Extensions;
-using DataVista.SystemTools;
+﻿using DataVista.SystemTools;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,8 @@ namespace DataVista.Database
     public class DataConverter
     {
         #region FIELDS
-        private static string? _winpath = SystemTools.WinPath.MyDocuments + @"\Datavista\DataConverter\";
+        private static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
+        private static string _folderPath = _winPath.Path + @"\Datavista\DataConverter\";
         #endregion
 
         #region CONSTRUCTOR
@@ -28,23 +28,23 @@ namespace DataVista.Database
         /// </summary>
         public DataConverter()
         {
-            if (!Directory.Exists(WinPath))
+            if (!Directory.Exists(_folderPath))
             {
-                Directory.CreateDirectory(WinPath);
+                Directory.CreateDirectory(_folderPath);
             }
         }
         #endregion
 
         #region PROPERTIES
-        public static string? WinPath
+        public static string FolderPath
         {
             get
             {
-                return _winpath;
+                return _folderPath;
             }
             set
             {
-                _winpath = value;
+                _folderPath = value;
             }
         }
         #endregion
@@ -59,7 +59,6 @@ namespace DataVista.Database
         /// <exception cref="ArgumentException"></exception>
         public static string ReadSqlFile(string filePath)
         {
-
             string query = String.Empty;
             string fileType = System.IO.Path.GetExtension(filePath).ToLower();
 
@@ -115,8 +114,8 @@ namespace DataVista.Database
         #region XML
         public void SerializeXml(DataSet dataSet)
         {
-            dataSet.WriteXmlSchema(WinPath);
-            dataSet.WriteXml(WinPath);
+            dataSet.WriteXmlSchema(_folderPath);
+            dataSet.WriteXml(_folderPath);
         }
 
         public void SerializeXml(DataSet dataSet, string winPath)
@@ -127,8 +126,8 @@ namespace DataVista.Database
 
         public DataSet DeSerializeXml(DataSet dataSet)
         {
-            dataSet.ReadXmlSchema(WinPath);
-            dataSet.ReadXml(WinPath);
+            dataSet.ReadXmlSchema(_folderPath);
+            dataSet.ReadXml(_folderPath);
 
             return dataSet;
         }

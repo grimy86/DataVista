@@ -13,16 +13,17 @@ namespace DataVista.Core
     internal class ExceptionHandler
     {
         #region FIELDS
-        private static string? _winpath = SystemTools.WinPath.MyDocuments + @"\Datavista\ExceptionHandler\";
-        private static string? _filePath = Path.Combine(_winpath, "Logs.txt");
+        private static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
+        private static string _folderPath = _winPath.Path + @"\Datavista\ExceptionHandler\";
+        private static string _filePath = _folderPath + "Logs.txt";
         #endregion
 
         #region CONSTRUCTOR
         internal ExceptionHandler(MethodBase method, Exception ex)
         {
-            if (!Directory.Exists(_winpath))
+            if (!Directory.Exists(_folderPath))
             {
-                Directory.CreateDirectory(_winpath);
+                Directory.CreateDirectory(_folderPath);
             }
 
             if (!File.Exists(_filePath))
@@ -34,15 +35,15 @@ namespace DataVista.Core
         }
         #endregion
 
-        public static string? WinPath
+        public string FolderPath
         {
             get
             {
-                return _winpath;
+                return _folderPath;
             }
             set
             {
-                _winpath = value;
+                _folderPath = value;
             }
         }
 
