@@ -50,19 +50,18 @@ Or you could use the [SqlConnectionStringBuilder Class](https://learn.microsoft.
 graph LR;
 	Core --> ExceptionHandler.cs
 	Core --> ExtensionMethods.cs
-	Core --> DVCDLL.cs
+	Core --> MemoryUtil.cs
 	
-	DVC.dll --C library--- DVCDLL.cs
+	DVC.dll --C library--- MemoryUtil.cs
 	
 	Database --> Operation.cs
 	Database --> DataConverter.cs
 	Database --> Connection.cs
-
+ 
 	SQL[(Database)] -.-> Connection.cs	
-
+ 
 	SystemTools --> Framerate.cs
 	SystemTools --> Hardware.cs
-	SystemTools --> MemoryUtil.cs
 	SystemTools --> WinPath.cs
 	SystemTools --> WinProcess.cs
 ```
@@ -89,4 +88,4 @@ Add the DLL **anywhere in the project**. Open up the DLL **file properties** and
 
 
 > [!IMPORTANT]
-> Call the appropriate constructor, DataVista.Database.**Connection(SqlConnection sqlConnection)** **will read the connectionString from the App.config file**.
+> **Connection(SqlConnection sqlConnection) constructor will read the connectionString from your App.config file**.

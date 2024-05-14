@@ -371,7 +371,7 @@ namespace DataVista.Database
             catch (Exception ex)
             {
                 sqlTransaction.Rollback();
-                ExceptionHandler exceptionHandler = new ExceptionHandler(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
                 throw new Exception("Error executing transaction: " + ex.Message);
             }
             finally

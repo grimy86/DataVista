@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataVista.Core
 {
-    internal class ExceptionHandler
+    internal static class ExceptionHandler
     {
         #region FIELDS
         private static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
@@ -18,9 +18,16 @@ namespace DataVista.Core
         private static string _filePath = _folderPath + "Logs.txt";
         #endregion
 
-        #region CONSTRUCTOR
-        internal ExceptionHandler(MethodBase method, Exception ex)
+        /// <summary>
+        /// Logs exceptions to <see cref="_filePath"/>
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="ex"></param>
+        internal static void LogException(MethodBase methodBase, Exception ex)
         {
+            string logMessage = $"Time: {DateTime.Now}, Method: {methodBase.Name}, Error {ex.Message}{Environment.NewLine}" +
+                $"@ StackTrace: {ex.StackTrace}, @Data {ex.Data}{Environment.NewLine}";
+
             if (!Directory.Exists(_folderPath))
             {
                 Directory.CreateDirectory(_folderPath);
@@ -30,32 +37,6 @@ namespace DataVista.Core
             {
                 File.Create(_filePath);
             }
-
-            LogException(method.Name, ex);
-        }
-        #endregion
-
-        public string FolderPath
-        {
-            get
-            {
-                return _folderPath;
-            }
-            set
-            {
-                _folderPath = value;
-            }
-        }
-
-        /// <summary>
-        /// Logs exceptions to <see cref="_filePath"/>
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="ex"></param>
-        internal void LogException(string handlerMessage, Exception ex)
-        {
-            string logMessage = $"Time: {DateTime.Now}, Handler: {handlerMessage}, Error {ex.Message}{Environment.NewLine}" +
-                $"@ StackTrace: {ex.StackTrace}, @Data {ex.Data}{Environment.NewLine}";
 
             try
             {

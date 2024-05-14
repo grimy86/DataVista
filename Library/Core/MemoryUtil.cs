@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataVista.SystemTools
+namespace DataVista.Core
 {
-    unsafe public static class MemoryUtil
+    /// <summary>
+    /// Class importing dll functions.
+    /// </summary>
+    public class MemoryUtil
     {
-        #region EXPERIMENTAL / UNSAFE
+        #region DVC
+        [DllImport("DVC.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern unsafe int* getAddressOfInt(int value);
+        #endregion
+
+        #region KERNEL32
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool ReadProcessMemory(
             IntPtr hProcess,

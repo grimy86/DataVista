@@ -19,6 +19,11 @@ namespace DataVista.SystemTools
             get { return GetUniqueProcesses(); }
         }
 
+        public static int RunningProcessesCount
+        {
+            get { return Process.GetProcesses().Length; }
+        }
+
         public static Process[] RunningProcesses
         {
             get { return Process.GetProcesses(); }
