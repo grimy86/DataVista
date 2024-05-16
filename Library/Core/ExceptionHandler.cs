@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace DataVista.Core
 {
-    internal static class ExceptionHandler
+    public static class ExceptionHandler
     {
         #region FIELDS
-        private static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
-        private static string _folderPath = _winPath.Path + @"\Datavista\ExceptionHandler\";
-        private static string _filePath = _folderPath + "Logs.txt";
+        internal static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
+        internal static string _folderPath = _winPath.Path + @"\Datavista\ExceptionHandler\";
+        internal static string _filePath = _folderPath + "Logs.txt";
         #endregion
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace DataVista.Core
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
-        internal static void LogException(MethodBase methodBase, Exception ex)
+        public static void LogException(MethodBase methodBase, Exception ex)
         {
             string logMessage = $"Time: {DateTime.Now}, Method: {methodBase.Name}, Error {ex.Message}{Environment.NewLine}" +
                 $"@ StackTrace: {ex.StackTrace}, @Data {ex.Data}{Environment.NewLine}";

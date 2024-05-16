@@ -18,8 +18,8 @@ namespace DataVista.Database
     public class DataConverter
     {
         #region FIELDS
-        private static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
-        private static string _folderPath = _winPath.Path + @"\Datavista\DataConverter\";
+        internal static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
+        internal static string _folderPath = _winPath.Path + @"\Datavista\DataConverter\";
         #endregion
 
         #region CONSTRUCTOR
