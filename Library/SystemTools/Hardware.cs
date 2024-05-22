@@ -13,7 +13,7 @@ using System.Windows.Controls;
 
 namespace DataVista.SystemTools
 {
-    public class Hardware : ISystemManager
+    public sealed class Hardware : ISystemManager
     {
         #region FIELDS
         private string? _hardwareID;

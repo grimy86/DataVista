@@ -10,19 +10,12 @@ using System.Windows.Media;
 
 namespace DataVista.SystemTools
 {
-    public class Framerate
+    public static class Framerate
     {
         #region FIELDS
         private static int _buffer;
         private static Stopwatch _stopwatch;
         private static double _count;
-        #endregion
-
-        #region PROPERTIES
-        public static double Count
-        {
-            get { return _count; }
-        }
         #endregion
 
         #region CONSTRUCTOR
@@ -33,6 +26,13 @@ namespace DataVista.SystemTools
 
             // Subscribe to CompositionTarget.Rendering event to track frame rendering
             CompositionTarget.Rendering += CompositionTarget_Rendering;
+        }
+        #endregion
+
+        #region PROPERTIES
+        public static double Count
+        {
+            get { return _count; }
         }
         #endregion
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataVista.SystemTools
 {
-    public class WinPath
+    public sealed class WinPath
     {
         private static SpecialFolderType _folderType;
         private string _path = _folderType.ToString();

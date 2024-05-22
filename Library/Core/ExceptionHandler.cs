@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace DataVista.Core
 {
-    public static class ExceptionHandler
+    internal static class ExceptionHandler
     {
         #region FIELDS
-        internal static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
-        internal static string _folderPath = _winPath.Path + @"\Datavista\ExceptionHandler\";
-        internal static string _filePath = _folderPath + "Logs.txt";
+        private static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
+        private static string _folderPath = _winPath.Path + @"\Datavista\ExceptionHandler\";
+        private static string _filePath = _folderPath + "Logs.txt";
         #endregion
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace DataVista.Core
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
-        public static void LogException(MethodBase methodBase, Exception ex)
+        internal static void Log(MethodBase methodBase, Exception ex)
         {
             string logMessage = $"Time: {DateTime.Now}, Method: {methodBase.Name}, Error {ex.Message}{Environment.NewLine}" +
                 $"@ StackTrace: {ex.StackTrace}, @Data {ex.Data}{Environment.NewLine}";
@@ -43,6 +43,31 @@ namespace DataVista.Core
                 using (StreamWriter writer = File.AppendText(_filePath))
                 {
                     writer.WriteLine(logMessage);
+                }
+            }
+            catch (Exception logException)
+            {
+                Debug.WriteLine(logException);
+            }
+        }
+
+        internal static void Log(string message)
+        {
+            if (!Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+            }
+
+            if (!File.Exists(_filePath))
+            {
+                File.Create(_filePath);
+            }
+
+            try
+            {
+                using (StreamWriter writer = File.AppendText(_filePath))
+                {
+                    writer.WriteLine(message);
                 }
             }
             catch (Exception logException)

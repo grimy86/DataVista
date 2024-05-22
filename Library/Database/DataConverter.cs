@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace DataVista.Database
 {
-    public class DataConverter
+    public sealed class DataConverter
     {
         #region FIELDS
         internal static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);

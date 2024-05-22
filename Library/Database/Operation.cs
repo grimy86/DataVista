@@ -18,7 +18,7 @@ using System.Windows;
 
 namespace DataVista.Database
 {
-    public class Operation
+    public sealed class Operation
     {
         #region FIELDS
         private readonly IConnection _Connection;
@@ -115,7 +115,7 @@ namespace DataVista.Database
             }
             catch (Exception ex)
             {
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
             }
             finally
             {
@@ -155,7 +155,7 @@ namespace DataVista.Database
             }
             catch (Exception ex)
             {
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
             }
             finally
             {
@@ -190,7 +190,7 @@ namespace DataVista.Database
             }
             catch (Exception ex)
             {
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
             }
             finally
             {
@@ -221,7 +221,7 @@ namespace DataVista.Database
             }
             catch (Exception ex)
             {
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
             }
             finally
             {
@@ -251,7 +251,7 @@ namespace DataVista.Database
             }
             catch (Exception ex)
             {
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
             }
             finally
             {
@@ -288,7 +288,7 @@ namespace DataVista.Database
             }
             catch (Exception ex)
             {
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
             }
             finally
             {
@@ -338,7 +338,7 @@ namespace DataVista.Database
             }
             catch (Exception ex)
             {
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
             }
             finally
             {
@@ -371,7 +371,7 @@ namespace DataVista.Database
             catch (Exception ex)
             {
                 sqlTransaction.Rollback();
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
                 throw new Exception("Error executing transaction: " + ex.Message);
             }
             finally
@@ -420,7 +420,7 @@ namespace DataVista.Database
             catch (Exception ex)
             {
                 sqlTransaction.Rollback();
-                ExceptionHandler.LogException(MethodBase.GetCurrentMethod(), ex);
+                ExceptionHandler.Log(MethodBase.GetCurrentMethod(), ex);
                 throw new Exception("Error executing transaction: " + ex.Message);
             }
             finally

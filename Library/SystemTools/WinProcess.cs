@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataVista.SystemTools
 {
-    public class WinProcess
+    public sealed class WinProcess
     {
         /// <summary>
         /// This will only return a string containing <see cref="Process.Id"/> and <see cref="Process.ProcessName"/>
@@ -63,7 +63,7 @@ namespace DataVista.SystemTools
 
                     stringBuilder.AppendLine($"Thread ID: {thread.Id}");
                     stringBuilder.AppendLine($"Thread Container: {thread.Container}");
-                    stringBuilder.AppendLine($"Thread StartAddress {thread.StartAddress}");
+                    stringBuilder.AppendLine($"Thread StartAddress: {thread.StartAddress}");
                     switch (BasePriority)
                     {
                         case 0:
