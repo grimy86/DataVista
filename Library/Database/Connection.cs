@@ -32,11 +32,9 @@ namespace DataVista.Database
         #region CONSTRUCTOR & DESTRUCTOR
         public Connection(SqlConnection sqlConnection)
         {
-            _sqlConnection = sqlConnection;
-
-            if (_sqlConnection != null)
+            if (_sqlConnection == null)
             {
-                _sqlConnection = new SqlConnection(ConnectionString);
+                _sqlConnection = sqlConnection;
             }
             else
             {
