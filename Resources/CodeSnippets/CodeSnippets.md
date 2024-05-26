@@ -12,7 +12,7 @@ class UsingDatabase
     void FillWithOperation()
     {
         Operation operation = new Operation();
-        DataTable dataTable = databaseOperation.ExecuteSQL<DataTable>(query, databaseOperation.ExecuteReader);
+        DataTable dataTable = operation.ExecuteSQL<DataTable>(query, databaseOperation.ExecuteReader);
 
         dataGrid.ItemsSource = dataTable.DefaultView;
     }
