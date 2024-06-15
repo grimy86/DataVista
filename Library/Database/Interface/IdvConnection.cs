@@ -10,19 +10,13 @@ using System.Windows.Controls;
 
 namespace DataVista.Database.Interface
 {
-    public interface IConnection : IDisposable
+    public interface IdvConnection : IDisposable
     {
         #region PROPERTIES
         /// <summary>
         /// Returns a formatted connectionstring to connect to the database.
         /// </summary>
         string ConnectionString { get; }
-
-        /// <summary>
-        /// Returns a string that identifies the database client.
-        /// Similar behaviour to EnvironmentUserName.
-        /// </summary>
-        string WorkstationId { get; }
 
         SqlConnection SqlConnection { get; }
 
@@ -34,17 +28,11 @@ namespace DataVista.Database.Interface
         ///     Fetching = 8,  Broken = 16
         /// </summary>
         ConnectionState ConnectionState { get; set; }
-
-        /// <summary>
-        /// Returns a connection ID of the most recent connection attempt,
-        /// regardless of whether the attempt succeeded or failed.
-        /// </summary>
-        public Guid ConnectionId { get; }
         #endregion
 
         #region METHODS
         /// <summary>
-        /// Let's the garbagecollector dispose of this object.
+        /// Lets the garbagecollector dispose of this object.
         /// </summary>
         public void Dispose();
         #endregion

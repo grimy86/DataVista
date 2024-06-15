@@ -10,7 +10,7 @@ namespace DataVista.Core
     /// <summary>
     /// Class importing dll functions.
     /// </summary>
-    public sealed class MemoryUtil
+    public sealed class dvMemoryUtil
     {
         #region DVC
         [DllImport("DVC.dll", CallingConvention = CallingConvention.Cdecl)]

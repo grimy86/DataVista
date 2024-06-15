@@ -1,5 +1,4 @@
-﻿using DataVista.SystemTools.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
@@ -13,7 +12,7 @@ using System.Windows.Controls;
 
 namespace DataVista.SystemTools
 {
-    public sealed class Hardware : ISystemManager
+    public sealed class dvEnvironmentInfo
     {
         #region FIELDS
         private string? _hardwareID;
@@ -21,7 +20,7 @@ namespace DataVista.SystemTools
         #endregion
 
         #region CONSTRUCTOR
-        public Hardware()
+        public dvEnvironmentInfo()
         {
             using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor"))
             {

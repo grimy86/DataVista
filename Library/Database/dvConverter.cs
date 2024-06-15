@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace DataVista.Database
 {
-    public sealed class DataConverter
+    public sealed class dvConverter
     {
         #region FIELDS
-        internal static WinPath _winPath = new WinPath(WinPath.SpecialFolderType.MyDocuments);
+        internal static dvWinPath _winPath = new dvWinPath(dvWinPath.SpecialFolderType.MyDocuments);
         internal static string _folderPath = _winPath.Path + @"\Datavista\DataConverter\";
         #endregion
 
@@ -26,7 +26,7 @@ namespace DataVista.Database
         /// <summary>
         /// Needs constructor to verify <see cref="Path"/>
         /// </summary>
-        public DataConverter()
+        public dvConverter()
         {
             if (!Directory.Exists(_folderPath))
             {

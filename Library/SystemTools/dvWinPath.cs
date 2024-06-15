@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DataVista.SystemTools
 {
-    public sealed class WinPath
+    public sealed class dvWinPath
     {
         private static SpecialFolderType _folderType;
         private string _path = _folderType.ToString();
 
-        public WinPath(SpecialFolderType folderType)
+        public dvWinPath(SpecialFolderType folderType)
         {
             _folderType = folderType;
         }

@@ -17,7 +17,7 @@ using System.Windows.Media;
 
 namespace DataVista.Database
 {
-    public class Connection : IConnection, IDisposable
+    public class dvConnection : IdvConnection, IDisposable
     {
         #region FIELDS
         private bool _disposed = false;
@@ -30,7 +30,12 @@ namespace DataVista.Database
         #endregion
 
         #region CONSTRUCTOR & DESTRUCTOR
-        public Connection(SqlConnection sqlConnection)
+        /// <summary>
+        /// Inject your own initialized sqlConnection into this constructor.
+        /// </summary>
+        /// <param name="sqlConnection"></param>
+        /// <exception cref="DataException"></exception>
+        public dvConnection(SqlConnection sqlConnection)
         {
             if (_sqlConnection == null)
             {
@@ -42,15 +47,22 @@ namespace DataVista.Database
             }
         }
 
-        public Connection(string connectionString)
+        /// <summary>
+        /// Pass a valid connectionString into this constructor.
+        /// </summary>
+        /// <param name="connectionString"></param>
+        public dvConnection(string connectionString)
         {
-            _sqlConnection = new SqlConnection(connectionString);
+            if (_sqlConnection == null)
+            {
+                _sqlConnection = new SqlConnection(connectionString);
+            }
         }
 
         /// <summary>
-        /// Destructor required to make the <see cref="Connection"/> of type <see cref="IDisposable"./>
+        /// Destructor required to make the <see cref="dvConnection"/> of type <see cref="IDisposable"./>
         /// </summary>
-        ~Connection()
+        ~dvConnection()
         {
             _disposed = true;
 
@@ -69,11 +81,16 @@ namespace DataVista.Database
             get { return _connectionString; }
         }
 
+        /// <summary>
+        /// Returns a string that identifies the database client.
+        /// Similar behaviour to EnvironmentUserName.
+        /// </summary>
         public string WorkstationId
         {
             get
             {
-                return _sqlConnection.WorkstationId;
+                if (_sqlConnection != null) return _sqlConnection.WorkstationId;
+                else return "this.SqlConnection == null";
             }
         }
 
@@ -81,7 +98,8 @@ namespace DataVista.Database
         {
             get
             {
-                return _sqlConnection;
+                if (_sqlConnection != null) return _sqlConnection;
+                else return null;
             }
         }
 
@@ -89,58 +107,46 @@ namespace DataVista.Database
         {
             get
             {
-                return _sqlConnection.State;
+                if (_sqlConnection != null) return _sqlConnection.State;
+                else return ConnectionState.Closed;
             }
             set
             {
-                if (_sqlConnection.State != value)
+                if (_sqlConnection != null)
                 {
-                    if (value == ConnectionState.Open)
+                    if (_sqlConnection.State != value)
                     {
-                        _sqlConnection.Open();
+                        if (value == ConnectionState.Open)
+                        {
+                            _sqlConnection.Open();
+                        }
                     }
-                }
-                else
-                {
-                    if (_sqlConnection.State == ConnectionState.Closed)
+                    else
                     {
-                        _sqlConnection.Close();
+                        if (_sqlConnection.State == ConnectionState.Closed)
+                        {
+                            _sqlConnection.Close();
+                        }
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Returns a connection ID of the most recent connection attempt,
+        /// regardless of whether the attempt succeeded or failed.
+        /// </summary>
         public Guid ConnectionId
         {
             get
             {
-                return _sqlConnection.ClientConnectionId;
+                if (_sqlConnection != null) return _sqlConnection.ClientConnectionId;
+                else return Guid.Empty;
             }
         }
         #endregion
 
         #region METHODS
-        /// <summary>
-        /// Requires:
-        /// <para><see cref="SqlConnectionStringBuilder.DataSource"/>, <see cref="SqlConnectionStringBuilder.InitialCatalog"/></para>
-        /// </summary>
-        /// <param name="DataSource"></param>
-        /// <param name="InitialCatalog"></param>
-        /// <returns></returns>
-        public static string CreateConnectionString(string DataSource, string InitialCatalog)
-        {
-            SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder();
-            stringBuilder.IntegratedSecurity = true;
-            stringBuilder.TrustServerCertificate = true;
-            stringBuilder.PersistSecurityInfo = false;
-            stringBuilder.InitialCatalog = InitialCatalog;
-            stringBuilder.DataSource = DataSource;
-            stringBuilder.Pooling = true;
-            stringBuilder.MultipleActiveResultSets = true;
-
-            return stringBuilder.ConnectionString;
-        }
-
         public void Dispose()
         {
             _disposed = true;

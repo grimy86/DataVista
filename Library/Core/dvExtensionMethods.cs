@@ -11,7 +11,7 @@ using System.Xml.XPath;
 
 namespace DataVista.Core
 {
-    public static class ExtensionMethods
+    public static class dvExtensionMethods
     {
         /// <summary>
         /// Sorts Enums by their logical index.
@@ -36,38 +36,38 @@ namespace DataVista.Core
 
         #region SQL OPERATIONS
         /// <summary>
-        /// Executes <see cref="Operation.ExecuteReader(string)"/>.
+        /// Executes <see cref="dvOperation.ExecuteReader(string)"/>.
         /// </summary>
         /// <param name="dataTable"></param>
         /// <param name="query"></param>
         /// <returns></returns>
         public static DataTable ExecuteReader(this DataTable dataTable, string query)
         {
-            Operation operation = new Operation();
+            dvOperation operation = new dvOperation();
             return operation.ExecuteSQL(query, operation.ExecuteReader);
         }
 
         /// <summary>
-        /// Executes <see cref="Operation.ExecuteScalar(string)"/>.
+        /// Executes <see cref="dvOperation.ExecuteScalar(string)"/>.
         /// </summary>
         /// <param name="dataTable"></param>
         /// <param name="query"></param>
         /// <returns></returns>
         public static object ExecuteScalar(this object result, string query)
         {
-            Operation operation = new Operation();
+            dvOperation operation = new dvOperation();
             return operation.ExecuteSQL(query, operation.ExecuteScalar);
         }
 
         /// <summary>
-        /// Executes <see cref="Operation.ExecuteNonQuery(string)"/>.
+        /// Executes <see cref="dvOperation.ExecuteNonQuery(string)"/>.
         /// </summary>
         /// <param name="dataTable"></param>
         /// <param name="query"></param>
         /// <returns></returns>
         public static int ExecuteNonQuery(this int result, string query)
         {
-            Operation operation = new Operation();
+            dvOperation operation = new dvOperation();
             return operation.ExecuteSQL(query, operation.ExecuteNonQuery);
         }
         #endregion

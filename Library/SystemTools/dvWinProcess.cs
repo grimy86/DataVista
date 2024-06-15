@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataVista.SystemTools
 {
-    public sealed class WinProcess
+    public sealed class dvWinProcess
     {
         /// <summary>
         /// This will only return a string containing <see cref="Process.Id"/> and <see cref="Process.ProcessName"/>
