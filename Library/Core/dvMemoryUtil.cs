@@ -12,20 +12,8 @@ namespace DataVista.Core
     /// </summary>
     public sealed class dvMemoryUtil
     {
-        #region DVC
-        [DllImport("DVC.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern unsafe int* getAddressOfInt(int value);
-        #endregion
-
-        #region KERNEL32
-        [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool ReadProcessMemory(
-            IntPtr hProcess,
-            IntPtr lpBaseAddress,
-            [Out] byte[] lpBuffer,
-            int dwSize,
-            out int lpNumberOfBytesRead
-         );
+        #region EXPERIMENTAL
+      
         #endregion
     }
 }

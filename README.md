@@ -51,8 +51,6 @@ graph LR;
 	Core --> dvExtensionMethods.cs
 	Core --> dvMemoryUtil.cs
 	
-	DVC.dll --C library--- dvMemoryUtil.cs
-	
 	Database --> dvOperation.cs
 	Database --> dvConverter.cs
 	Database --> dvConnection.cs
@@ -64,21 +62,6 @@ graph LR;
 	SystemTools --> dvWinProcess.cs
 ```
 
-### 4. To use methods from DataVista.External, add the DLL file(s) (optional)
-#### Step 1
-Go into your **solution explorer** and select **"Show All Files"** or open the folder local to your solution.
-
-#### Step 2
-Add the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) **manually**, directly to the **/bin/Debug/** and **/bin/Release/* folders.
-
-![DVCexample](https://raw.githubusercontent.com/ag-86/DataVista/master/Resources/Documents/DVCexample.png)
-
-**OR**
-
-Add the DLL **anywhere in the project**. Open up the DLL **file properties** and set the **"Copy to Output Directory"** property to **"Copy always"** or **"Copy if newer"**.
-
-> [!NOTE]
-> Make sure to keep the [DLL file(s)](https://github.com/ag-86/DataVista/tree/master/x64/Release) **up to date**.
 ## Docs
   - [Example application](https://github.com/ag-86/DataVista/tree/master/Resources/ApplicationExample)
   - [Code example](https://github.com/ag-86/DataVista/blob/master/Resources/CodeSnippets/CodeSnippets.md)
