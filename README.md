@@ -1,4 +1,5 @@
 
+# This package is legacy and is no longer maintained
 # DataVista
 DataVista is a .NET library for:
 - Database interactions - System.Data.SqlClient (ADO.NET)
